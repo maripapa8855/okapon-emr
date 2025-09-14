@@ -1,0 +1,29 @@
+{
+    "name": "okapon-emr-core",
+    "version": "0.1.0",
+    "private": false,
+    "license": "AGPL-3.0-only",
+    "type": "module",
+    "scripts": {
+      "dev": "tsx src/server.ts",
+      "build": "tsc -p .",
+      "start": "node dist/server.js",
+      "migrate": "psql $DATABASE_URL -f migrations/20250911_init_inpatient.sql && psql $DATABASE_URL -f migrations/20250911_init_homecare.sql",
+      "worker:appts": "tsx src/workers/appointmentsMaterializer.ts",
+      "worker:appts:once": "cross-env RUN_ONCE=true tsx src/workers/appointmentsMaterializer.ts"
+    },
+    "dependencies": {
+      "cors": "^2.8.5",
+      "dotenv": "^17.2.2",
+      "express": "^4.21.2",
+      "pg": "^8.12.0",
+      "zod": "^3.23.8"
+    },
+    "devDependencies": {
+      "@types/node": "^24.3.3",
+      "tsx": "^4.20.5",
+      "typescript": "^5.9.2",
+      "cross-env": "^7.0.3"
+    }
+  }
+  

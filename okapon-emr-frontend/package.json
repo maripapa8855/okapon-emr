@@ -1,0 +1,25 @@
+{
+    "name": "okapon-emr-frontend",
+    "version": "0.1.0",
+    "private": false,
+    "license": "AGPL-3.0-only",
+    "type": "module",
+    "scripts": {
+      "dev": "next dev",
+      "build": "next build",
+      "start": "next start",
+      "guard:routes": "node scripts/guard-routes.js",
+      "precommit": "npm run guard:routes"
+    },
+    "dependencies": {
+      "next": "14.2.5",
+      "react": "18.3.1",
+      "react-dom": "18.3.1"
+    },
+    "devDependencies": {
+      "typescript": "^5.6.3",
+      "@types/node": "^20.14.12",
+      "@types/react": "^18.3.5"
+    }
+  }
+  

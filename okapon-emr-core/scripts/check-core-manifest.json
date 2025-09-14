@@ -1,0 +1,15 @@
+{
+  "required": [
+    "src/server.ts",
+    "src/workers/appointmentsMaterializer.ts"
+  ],
+  "requiredAny": [
+    ["src/routes/homecare_ext.ts", "src/routes/homecare.ts"]
+  ],
+  "optionalAny": [
+    ["src/routes/clinic_ext.ts", "src/routes/clinic.ts"]
+  ],
+  "scripts": ["dev","build","start","migrate","worker:appts","worker:appts:once"],
+  "dependencies": ["express","pg","cors","dotenv"],
+  "devDependencies": ["tsx","typescript","@types/node"]
+}
