@@ -1,1 +1,34 @@
-﻿<上の YAML をそのまま貼る>
+﻿name: verify
+on:
+  pull_request:
+  push:
+    branches: [ main ]
+jobs:
+  checks:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: "20" }
+
+      - name: Core: bundle & manifest
+        run: |
+          cd okapon-emr-core
+          node scripts/check-core-bundle.js
+          node scripts/enforce-manifest-coverage.js
+
+      - name: Frontend: guard routes
+        run: |
+          cd okapon-emr-frontend
+          node scripts/guard-routes.js
+
+      - name: Canary: manifest enforcement must fail for new critical file
+        run: |
+          cd okapon-emr-core
+          node -e "require('fs').mkdirSync('src/routes',{recursive:true}); require('fs').writeFileSync('src/routes/__canary.ts','export {}')"
+          if node scripts/enforce-manifest-coverage.js; then
+            echo '❌ Canary FAILED'
+            exit 1
+          else
+            echo '✅ Canary OK'
+          fi
