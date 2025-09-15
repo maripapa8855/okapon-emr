@@ -1,0 +1,6 @@
+# OkaPON EMR: Code Owners
+# ルート起点（先頭 /）でパス指定
+/okapon-emr-core/src/routes/**              @maripapa8855
+/okapon-emr-core/src/workers/**             @maripapa8855
+/okapon-emr-frontend/src/app/(homecare)/**  @maripapa8855
+/okapon-emr-frontend/src/app/(clinic)/**    @maripapa8855
